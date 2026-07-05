@@ -134,24 +134,6 @@ document.body.style.overflow = 'hidden';
   sections.forEach(s => observer.observe(s));
 })();
 
-/* ── THEME TOGGLE ── */
-(function initThemeToggle() {
-  const btn = document.getElementById('theme-toggle');
-  if (!btn) return;
-
-  // Restore saved preference
-  const saved = localStorage.getItem('theme');
-  if (saved === 'light') {
-    document.body.classList.add('light-mode');
-  }
-
-  btn.addEventListener('click', () => {
-    document.body.classList.toggle('light-mode');
-    const isLight = document.body.classList.contains('light-mode');
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
-  });
-})();
-
 /* ── HERO PARALLAX ── */
 (function initParallax() {
   const heroImg = document.getElementById('hero-bg-img');
@@ -292,46 +274,6 @@ function startCounters() {
     badge.addEventListener('mouseleave', () => {
       badge.style.transform = '';
     });
-  });
-})();
-
-/* ── PROFILE PHOTO 3D TILT ── */
-(function initProfileTilt() {
-  const card = document.getElementById('profile-tilt-card');
-  if (!card) return;
-
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const cx = rect.width  / 2;
-    const cy = rect.height / 2;
-    const dx = (x - cx) / cx;  // -1 to +1
-    const dy = (y - cy) / cy;  // -1 to +1
-
-    const rotX = -dy * 12;   // max ±12deg tilt
-    const rotY =  dx * 12;
-    const shadowX = dx * 20;
-    const shadowY = dy * 20;
-
-    card.style.transform = `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.04, 1.04, 1.04)`;
-    card.style.boxShadow = `
-      ${shadowX}px ${shadowY}px 40px rgba(0,0,0,0.4),
-      0 0 60px rgba(0,212,255,0.18),
-      inset 0 1px 0 rgba(255,255,255,0.08)
-    `;
-  });
-
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
-    card.style.boxShadow = '';
-    // Smooth snap back
-    card.style.transition = 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s ease';
-    setTimeout(() => { card.style.transition = ''; }, 500);
-  });
-
-  card.addEventListener('mouseenter', () => {
-    card.style.transition = 'none';
   });
 })();
 
