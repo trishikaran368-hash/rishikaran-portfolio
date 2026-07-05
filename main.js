@@ -307,24 +307,54 @@ function startCounters() {
   const success = document.getElementById('form-success');
 
   form.addEventListener('submit', (e) => {
+     console.log('FORM SUBMITTED');
     e.preventDefault();
 
     const btn = form.querySelector('#submit-btn');
     const span = btn.querySelector('span');
 
-    // Simulate sending
-    btn.disabled = true;
-    span.textContent = 'Sending...';
-    btn.style.opacity = '0.7';
+   // Send to backend
+btn.disabled = true;
+span.textContent = 'Sending...';
 
-    setTimeout(() => {
-      btn.disabled = false;
-      span.textContent = 'Send Message';
-      btn.style.opacity = '1';
-      success.classList.add('show');
-      form.reset();
-      setTimeout(() => success.classList.remove('show'), 5000);
-    }, 1800);
+const name = document.getElementById('name-input').value;
+const email = document.getElementById('email-input').value;
+const subject = document.getElementById('subject-input').value;
+const message = document.getElementById('message-input').value;
+
+fetch('http://localhost:3001/api/contact', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        name,
+        email,
+        subject,
+        message
+    })
+})
+.then(response => response.json())
+.then(data => {
+    btn.disabled = false;
+    span.textContent = 'Send Message';
+    btn.style.opacity = '1';
+
+    if (data.success) {
+        success.classList.add('show');
+        form.reset();
+        setTimeout(() => success.classList.remove('show'), 5000);
+    } else {
+        alert('Failed to send message');
+    }
+})
+.catch(error => {
+    console.error(error);
+    btn.disabled = false;
+    span.textContent = 'Send Message';
+    btn.style.opacity = '1';
+    alert('Error connecting to server');
+});
   });
 
   // Floating label effect
