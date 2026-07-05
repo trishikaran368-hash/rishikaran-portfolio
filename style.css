@@ -161,6 +161,8 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 .loader {
   position: fixed;
   inset: 0;
+  /* Use dvh on mobile to fully cover the viewport including browser chrome */
+  min-height: 100dvh;
   background: var(--bg-primary);
   display: flex;
   flex-direction: column;
@@ -168,12 +170,16 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   justify-content: center;
   z-index: 9999;
   transition: opacity 0.6s ease, visibility 0.6s ease;
+  /* Prevent any overscroll during loading */
+  touch-action: none;
+  overscroll-behavior: none;
 }
 
 .loader.hidden {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  touch-action: auto;
 }
 
 .loader-gear {
@@ -511,6 +517,15 @@ body.light-mode .theme-toggle:hover { background: rgba(0,100,255,0.14); border-c
 }
 
 .hero-img.loaded { transform: scale(1); }
+
+/* On mobile: disable the zoom-in/out transition to prevent jitter on load */
+@media (max-width: 768px) {
+  .hero-img {
+    transform: scale(1) !important;
+    transition: none !important;
+  }
+  .hero-img.loaded { transform: scale(1) !important; }
+}
 
 .hero-overlay {
   position: absolute;
@@ -852,17 +867,23 @@ body.light-mode .scroll-wheel { background: var(--accent-blue); }
   border: 1px solid var(--border-card);
   border-radius: var(--radius-lg);
   padding: 24px;
-  transition: transform 0.15s ease, box-shadow 0.3s ease;
+  transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.38s ease, border-color 0.38s ease;
   transform-style: preserve-3d;
   perspective: 1000px;
   cursor: pointer;
   will-change: transform;
 }
 
-/* 3D hover tilt animation */
+/* Popup hover animation — lift + glow */
 .profile-3d-card:hover {
-  box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 50px rgba(0,212,255,0.15);
-  border-color: rgba(0, 212, 255, 0.45);
+  transform: perspective(900px) translateY(-12px) scale(1.02);
+  box-shadow:
+    0 40px 90px rgba(0,0,0,0.55),
+    0 0 60px rgba(0,212,255,0.22),
+    0 0 120px rgba(0,102,255,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+  border-color: rgba(0, 212, 255, 0.55);
+  transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.38s ease, border-color 0.38s ease;
 }
 
 /* JS-driven tilt via inline style — the CSS just sets the base & glow */
@@ -2103,8 +2124,8 @@ body.light-mode .scroll-wheel { background: var(--accent-blue); }
   .nav-toggle { display: flex; z-index: 1001; }
   .btn-hire { display: none; }
 
-  /* Hide scroll indicator on mobile */
-  .scroll-indicator { display: none; }
+  /* Hide scroll indicator on mobile — remove from layout entirely */
+  .scroll-indicator { display: none !important; visibility: hidden !important; }
 
   .navbar { padding: 14px 24px; }
   .navbar.scrolled { padding: 10px 24px; }

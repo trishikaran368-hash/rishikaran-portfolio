@@ -156,6 +156,8 @@ document.body.style.overflow = 'hidden';
   const cube = document.getElementById('cube3d');
 
   window.addEventListener('scroll', () => {
+    // Skip parallax on mobile — it causes jitter
+    if (window.innerWidth <= 768) return;
     const scrollY = window.scrollY;
     if (heroImg) {
       heroImg.style.transform = `scale(1.05) translateY(${scrollY * 0.3}px)`;
@@ -165,10 +167,11 @@ document.body.style.overflow = 'hidden';
     }
   }, { passive: true });
 
-  // Mouse move 3D tilt on hero content
+  // Mouse move 3D tilt on hero content — desktop only
   const heroContent = document.querySelector('.hero-content');
   document.addEventListener('mousemove', (e) => {
     if (!heroContent) return;
+    if (window.innerWidth <= 768) return; // skip on mobile/touch
     const { clientX, clientY } = e;
     const cx = window.innerWidth / 2;
     const cy = window.innerHeight / 2;
