@@ -1,0 +1,667 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rishikaran T — Mechanical Designer Portfolio</title>
+  <meta name="description" content="Professional portfolio of Rishikaran T, a final-year mechanical engineering student specializing in SolidWorks, AutoCAD, GD&T, and ANSYS simulation. Aspiring mechanical designer based in India." />
+  <meta name="keywords" content="Rishikaran T, mechanical engineer, mechanical designer, SolidWorks, AutoCAD, ANSYS, GD&T, CAD, FEA, engineering portfolio" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══ LOADER ══ -->
+  <div id="loader" class="loader">
+    <div class="loader-gear">
+      <svg viewBox="0 0 100 100" class="gear-svg">
+        <g id="gear-spin">
+          <path d="M50 15 L55 5 L60 15 L65 12 L63 22 L73 22 L70 32 L80 35 L73 43 L82 48 L75 55 L82 63 L73 68 L77 78 L67 77 L65 88 L55 85 L50 95 L45 85 L35 88 L33 77 L23 78 L27 68 L18 63 L25 55 L18 48 L27 43 L20 35 L30 32 L27 22 L37 22 L35 12 L40 15 Z" fill="none" stroke="#00d4ff" stroke-width="2"/>
+          <circle cx="50" cy="50" r="15" fill="none" stroke="#00d4ff" stroke-width="2"/>
+          <circle cx="50" cy="50" r="5" fill="#00d4ff"/>
+        </g>
+      </svg>
+    </div>
+    <p class="loader-text">Initializing Design System<span class="dots">...</span></p>
+  </div>
+
+  <!-- ══ PARTICLE CANVAS ══ -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- ══ NAV ══ -->
+  <nav id="navbar" class="navbar">
+    <div class="nav-logo">
+      <span class="logo-icon">⚙</span>
+      <span class="logo-text">Rishi<span class="logo-accent">karan</span></span>
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#hero" class="nav-link active" id="nav-home">Home</a></li>
+      <li><a href="#about" class="nav-link" id="nav-about">About</a></li>
+      <li><a href="#skills" class="nav-link" id="nav-skills">Skills</a></li>
+      <li><a href="#projects" class="nav-link" id="nav-projects">Projects</a></li>
+      <li><a href="#timeline" class="nav-link" id="nav-timeline">Journey</a></li>
+      <li><a href="#contact" class="nav-link" id="nav-contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn-hire" id="hire-btn">Hire Me</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <section id="hero" class="hero">
+    <div class="hero-bg">
+      <img src="assets/hero_gears.jpg" alt="Mechanical gears background" class="hero-img" id="hero-bg-img"/>
+      <div class="hero-overlay"></div>
+    </div>
+
+    <!-- 3D rotating cube in background -->
+    <div class="cube-scene" id="cube-scene">
+      <div class="cube" id="cube3d">
+        <div class="face front"></div>
+        <div class="face back"></div>
+        <div class="face left"></div>
+        <div class="face right"></div>
+        <div class="face top"></div>
+        <div class="face bottom"></div>
+      </div>
+    </div>
+
+    <!-- Floating engineering icons -->
+    <div class="float-icons">
+      <span class="fi fi-1">⚙</span>
+      <span class="fi fi-2">🔩</span>
+      <span class="fi fi-3">📐</span>
+      <span class="fi fi-4">⚒</span>
+      <span class="fi fi-5">🔧</span>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Available for Internship & Full-time Roles
+      </div>
+      <h1 class="hero-title">
+        <span class="title-line-1">Rishikaran T</span>
+        <span class="title-line-2">Designer<span class="title-cursor">|</span></span>
+      </h1>
+      <p class="hero-subtitle">Final Year Mechanical Engineering Student</p>
+      <p class="hero-desc">
+        Passionate about transforming complex engineering challenges into precise, 
+        elegant design solutions using <em>SolidWorks</em>, <em>AutoCAD</em>, <em>ANSYS</em> & <em>GD&amp;T</em>.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <span class="stat-num" data-target="15">0</span>+
+          <span class="stat-label">Projects</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-card">
+          <span class="stat-num" data-target="4">0</span>
+          <span class="stat-label">Core Tools</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-card">
+          <span class="stat-num" data-target="3">0</span>
+          <span class="stat-label">Years Study</span>
+        </div>
+      </div>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary" id="view-work-btn">
+          <span>View My Work</span>
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#contact" class="btn-outline" id="contact-btn">Get In Touch</a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator" id="scroll-indicator">
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+      <span>Scroll to explore</span>
+    </div>
+  </section>
+
+  <!-- ══ ABOUT ══ -->
+  <section id="about" class="about section">
+    <div class="container">
+      <div class="section-tag">About Me</div>
+      <h2 class="section-title">Engineered to <span class="gradient-text">Design</span></h2>
+
+      <div class="about-grid">
+        <div class="about-image-wrap" id="profile-3d-wrap">
+          <div class="orbit-system">
+            <div class="orbit-ring or-1"><div class="orbit-dot od-1"></div></div>
+            <div class="orbit-ring or-2"><div class="orbit-dot od-2"></div></div>
+            <div class="orbit-ring or-3"><div class="orbit-dot od-3"></div></div>
+          </div>
+          <div class="profile-3d-card" id="profile-tilt-card">
+            <div class="profile-depth-glow pdg-1"></div>
+            <div class="profile-depth-glow pdg-2"></div>
+            <span class="bracket br-tl"></span>
+            <span class="bracket br-tr"></span>
+            <span class="bracket br-bl"></span>
+            <span class="bracket br-br"></span>
+            <div class="profile-photo-frame">
+              <img src="assets/profile.jpg" alt="Rishikaran T - Mechanical Engineering Student" class="profile-photo" id="profile-photo" />
+              <div class="scan-overlay">
+                <div class="scan-line"></div>
+                <div class="scan-grid"></div>
+              </div>
+              <div class="holo-wash"></div>
+            </div>
+            <div class="identity-chip">
+              <div class="id-chip-dot"></div>
+              <div class="id-chip-text">
+                <strong>Rishikaran T</strong>
+                <span>Mechanical Designer</span>
+              </div>
+              <div class="id-chip-badge">&#10003;</div>
+            </div>
+          </div>
+          <div class="float-badge fb-sw" id="fbsw">
+            <div class="fb-icon sw-c">&#9881;</div>
+            <div class="fb-text"><strong>SolidWorks</strong><span>3D Design</span></div>
+          </div>
+          <div class="float-badge fb-an" id="fban">
+            <div class="fb-icon an-c">&#9651;</div>
+            <div class="fb-text"><strong>ANSYS</strong><span>FEA Simulation</span></div>
+          </div>
+          <div class="float-badge fb-gd" id="fbgd">
+            <div class="fb-icon gd-c">&#9632;</div>
+            <div class="fb-text"><strong>GD&amp;T</strong><span>ASME Y14.5</span></div>
+          </div>
+          <div class="profile-stats-strip">
+            <div class="pss-item"><span class="pss-val">15+</span><span class="pss-lbl">Projects</span></div>
+            <div class="pss-sep"></div>
+            <div class="pss-item"><span class="pss-val">4</span><span class="pss-lbl">Tools</span></div>
+            <div class="pss-sep"></div>
+            <div class="pss-item"><span class="pss-val">3+</span><span class="pss-lbl">Yrs</span></div>
+          </div>
+        </div>
+
+        <div class="about-text">
+          <p class="about-intro">
+            Hi! I'm <strong style="color: var(--accent-cyan)">Rishikaran T</strong>, a final-year Mechanical Engineering student with a deep 
+            passion for precision design and engineering innovation.
+          </p>
+          <p class="about-body">
+            My journey in mechanical design has equipped me with strong proficiency 
+            in industry-standard CAD tools and simulation software. I thrive at the 
+            intersection of creativity and technical precision — turning engineering 
+            concepts into functional, manufacturable designs.
+          </p>
+          <p class="about-body">
+            Currently mastering <strong>SolidWorks</strong> for 3D modelling & assemblies, 
+            <strong>AutoCAD</strong> for technical drawings, <strong>ANSYS</strong> for FEA simulations, 
+            and <strong>GD&amp;T</strong> principles for precise dimensional tolerancing.
+          </p>
+
+          <div class="about-highlights">
+            <div class="highlight-item">
+              <div class="highlight-icon">🎯</div>
+              <div>
+                <strong>Design Precision</strong>
+                <span>Tight tolerances & DFM focus</span>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">🔬</div>
+              <div>
+                <strong>Simulation</strong>
+                <span>FEA & structural analysis</span>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">📏</div>
+              <div>
+                <strong>GD&amp;T Certified</strong>
+                <span>ASME Y14.5 standards</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-cta">
+            <a href="#" class="btn-primary" id="resume-btn" download>
+              <span>Download CV</span>
+              <svg viewBox="0 0 24 24"><path d="M12 16l-4-4h3V4h2v8h3l-4 4zM4 18h16v2H4z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SKILLS ══ -->
+  <section id="skills" class="skills section">
+    <div class="container">
+      <div class="section-tag">Technical Arsenal</div>
+      <h2 class="section-title">My <span class="gradient-text">Skills</span></h2>
+      <p class="section-subtitle">Tools & technologies I use to bring designs to life</p>
+
+      <!-- 3D Skill Cards -->
+      <div class="skills-grid">
+
+        <div class="skill-card-3d" id="skill-solidworks">
+          <div class="skill-card-inner">
+            <div class="skill-card-front">
+              <div class="skill-icon-wrap sw">
+                <svg viewBox="0 0 60 60" class="skill-icon-svg"><circle cx="30" cy="30" r="28" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 30c0-8.3 6.7-15 15-15 5.5 0 10.3 3 13 7.5" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M45 30c0 8.3-6.7 15-15 15-5.5 0-10.3-3-13-7.5" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="30" cy="30" r="5" fill="currentColor"/></svg>
+              </div>
+              <h3>SolidWorks</h3>
+              <p>3D Modelling & Assembly</p>
+              <div class="skill-progress-wrap">
+                <div class="skill-progress" data-pct="85">
+                  <div class="progress-bar"></div>
+                </div>
+                <span class="skill-pct">85%</span>
+              </div>
+            </div>
+          </div>
+          <div class="skill-glow sw-glow"></div>
+        </div>
+
+        <div class="skill-card-3d" id="skill-autocad">
+          <div class="skill-card-inner">
+            <div class="skill-card-front">
+              <div class="skill-icon-wrap ac">
+                <svg viewBox="0 0 60 60" class="skill-icon-svg"><rect x="5" y="5" width="50" height="50" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 45L30 15L45 45" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="20" y1="35" x2="40" y2="35" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+              </div>
+              <h3>AutoCAD</h3>
+              <p>2D Drafting & Technical Drawing</p>
+              <div class="skill-progress-wrap">
+                <div class="skill-progress" data-pct="80">
+                  <div class="progress-bar"></div>
+                </div>
+                <span class="skill-pct">80%</span>
+              </div>
+            </div>
+          </div>
+          <div class="skill-glow ac-glow"></div>
+        </div>
+
+        <div class="skill-card-3d" id="skill-ansys">
+          <div class="skill-card-inner">
+            <div class="skill-card-front">
+              <div class="skill-icon-wrap an">
+                <svg viewBox="0 0 60 60" class="skill-icon-svg"><polygon points="30,5 55,50 5,50" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="30" cy="30" r="10" fill="none" stroke="currentColor" stroke-width="2"/><line x1="30" y1="5" x2="30" y2="20" stroke="currentColor" stroke-width="2"/><line x1="30" y1="40" x2="30" y2="50" stroke="currentColor" stroke-width="2"/></svg>
+              </div>
+              <h3>ANSYS</h3>
+              <p>FEA & Structural Simulation</p>
+              <div class="skill-progress-wrap">
+                <div class="skill-progress" data-pct="75">
+                  <div class="progress-bar"></div>
+                </div>
+                <span class="skill-pct">75%</span>
+              </div>
+            </div>
+          </div>
+          <div class="skill-glow an-glow"></div>
+        </div>
+
+        <div class="skill-card-3d" id="skill-gdt">
+          <div class="skill-card-inner">
+            <div class="skill-card-front">
+              <div class="skill-icon-wrap gd">
+                <svg viewBox="0 0 60 60" class="skill-icon-svg"><rect x="5" y="20" width="50" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="5" y="20" width="17" height="20" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="13" cy="30" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="5" y1="15" x2="55" y2="15" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3,2"/><line x1="5" y1="45" x2="55" y2="45" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3,2"/></svg>
+              </div>
+              <h3>GD&amp;T</h3>
+              <p>Geometric Dimensioning & Tolerancing</p>
+              <div class="skill-progress-wrap">
+                <div class="skill-progress" data-pct="78">
+                  <div class="progress-bar"></div>
+                </div>
+                <span class="skill-pct">78%</span>
+              </div>
+            </div>
+          </div>
+          <div class="skill-glow gd-glow"></div>
+        </div>
+
+        <div class="skill-card-3d" id="skill-dfm">
+          <div class="skill-card-inner">
+            <div class="skill-card-front">
+              <div class="skill-icon-wrap df">
+                <svg viewBox="0 0 60 60" class="skill-icon-svg"><path d="M10 50V20l20-15 20 15v30H10z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M22 50v-15h16v15" fill="none" stroke="currentColor" stroke-width="2"/><line x1="30" y1="5" x2="30" y2="35" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2,2"/></svg>
+              </div>
+              <h3>DFM/DFA</h3>
+              <p>Design for Manufacturing</p>
+              <div class="skill-progress-wrap">
+                <div class="skill-progress" data-pct="70">
+                  <div class="progress-bar"></div>
+                </div>
+                <span class="skill-pct">70%</span>
+              </div>
+            </div>
+          </div>
+          <div class="skill-glow df-glow"></div>
+        </div>
+
+        <div class="skill-card-3d" id="skill-ms">
+          <div class="skill-card-inner">
+            <div class="skill-card-front">
+              <div class="skill-icon-wrap ms">
+                <svg viewBox="0 0 60 60" class="skill-icon-svg"><circle cx="30" cy="30" r="20" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="30" cy="30" r="4" fill="currentColor"/><line x1="30" y1="10" x2="30" y2="26" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="30" y1="30" x2="42" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+              <h3>Material Science</h3>
+              <p>Material Selection & Properties</p>
+              <div class="skill-progress-wrap">
+                <div class="skill-progress" data-pct="72">
+                  <div class="progress-bar"></div>
+                </div>
+                <span class="skill-pct">72%</span>
+              </div>
+            </div>
+          </div>
+          <div class="skill-glow ms-glow"></div>
+        </div>
+
+      </div>
+
+      <!-- Soft Skills Orbs -->
+      <div class="soft-skills">
+        <h3 class="soft-title">Professional Skills</h3>
+        <div class="orbs-row">
+          <div class="skill-orb">Problem Solving</div>
+          <div class="skill-orb">Technical Drawings</div>
+          <div class="skill-orb">Team Collaboration</div>
+          <div class="skill-orb">Attention to Detail</div>
+          <div class="skill-orb">Critical Thinking</div>
+          <div class="skill-orb">Project Management</div>
+          <div class="skill-orb">Research & Analysis</div>
+          <div class="skill-orb">Report Writing</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PROJECTS ══ -->
+  <section id="projects" class="projects section">
+    <div class="container">
+      <div class="section-tag">Portfolio</div>
+      <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+      <p class="section-subtitle">A showcase of my engineering design work</p>
+
+      <div class="projects-grid">
+
+        <!-- Project 1 -->
+        <article class="project-card" id="proj-1">
+          <div class="proj-img-wrap">
+            <img src="assets/project_solidworks.jpg" alt="SolidWorks Robotic Arm Assembly" class="proj-img" loading="lazy"/>
+            <div class="proj-overlay">
+              <div class="proj-tags">
+                <span class="tag">SolidWorks</span>
+                <span class="tag">Assembly</span>
+                <span class="tag">3D Model</span>
+              </div>
+            </div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-num">01</div>
+            <h3 class="proj-title">4-DOF Robotic Arm Assembly</h3>
+            <p class="proj-desc">
+              Designed a 4-degree-of-freedom robotic arm assembly in SolidWorks with full 
+              motion simulation. Includes detailed part drawings with tolerances, BOM, and 
+              exploded assembly views.
+            </p>
+            <div class="proj-tech">
+              <span>SolidWorks</span>
+              <span>Motion Analysis</span>
+              <span>Assembly Design</span>
+            </div>
+            <a href="#" class="proj-link" id="proj-link-1">
+              View Project <svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card" id="proj-2">
+          <div class="proj-img-wrap">
+            <img src="assets/project_fea.jpg" alt="FEA Stress Analysis ANSYS" class="proj-img" loading="lazy"/>
+            <div class="proj-overlay">
+              <div class="proj-tags">
+                <span class="tag">ANSYS</span>
+                <span class="tag">FEA</span>
+                <span class="tag">Simulation</span>
+              </div>
+            </div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-num">02</div>
+            <h3 class="proj-title">Structural FEA — Connecting Rod</h3>
+            <p class="proj-desc">
+              Performed comprehensive finite element analysis of an automotive connecting rod 
+              under cyclic loading conditions. Identified stress concentration zones and 
+              optimized geometry to reduce peak von Mises stress by 23%.
+            </p>
+            <div class="proj-tech">
+              <span>ANSYS Mechanical</span>
+              <span>FEA</span>
+              <span>Structural Analysis</span>
+            </div>
+            <a href="#" class="proj-link" id="proj-link-2">
+              View Project <svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card featured" id="proj-3">
+          <div class="featured-badge">Featured</div>
+          <div class="proj-img-wrap">
+            <img src="assets/project_cad.jpg" alt="CAD Mechanical Design Project" class="proj-img" loading="lazy"/>
+            <div class="proj-overlay">
+              <div class="proj-tags">
+                <span class="tag">SolidWorks</span>
+                <span class="tag">GD&amp;T</span>
+                <span class="tag">DFM</span>
+              </div>
+            </div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-num">03</div>
+            <h3 class="proj-title">Precision Bracket — Design for Manufacturing</h3>
+            <p class="proj-desc">
+              Designed a precision machined bracket with full GD&T callouts following 
+              ASME Y14.5 standards. Applied DFM principles to reduce machining operations 
+              by 35%. Complete engineering drawing package with first-angle projections.
+            </p>
+            <div class="proj-tech">
+              <span>SolidWorks</span>
+              <span>GD&amp;T</span>
+              <span>DFM</span>
+              <span>Engineering Drawing</span>
+            </div>
+            <a href="#" class="proj-link" id="proj-link-3">
+              View Project <svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="project-card" id="proj-4">
+          <div class="proj-img-wrap">
+            <img src="assets/project_autocad.jpg" alt="AutoCAD Technical Drawing Blueprint" class="proj-img" loading="lazy"/>
+            <div class="proj-overlay">
+              <div class="proj-tags">
+                <span class="tag">AutoCAD</span>
+                <span class="tag">Blueprint</span>
+                <span class="tag">GD&amp;T</span>
+              </div>
+            </div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-num">04</div>
+            <h3 class="proj-title">Hydraulic Cylinder Technical Drawing Set</h3>
+            <p class="proj-desc">
+              Created a complete AutoCAD technical drawing package for a hydraulic cylinder 
+              assembly including part drawings, assembly drawing, and bill of materials 
+              with full dimensional tolerancing and GD&T annotations.
+            </p>
+            <div class="proj-tech">
+              <span>AutoCAD</span>
+              <span>GD&amp;T</span>
+              <span>Technical Drawing</span>
+            </div>
+            <a href="#" class="proj-link" id="proj-link-4">
+              View Project <svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TIMELINE ══ -->
+  <section id="timeline" class="timeline section">
+    <div class="container">
+      <div class="section-tag">My Journey</div>
+      <h2 class="section-title">Engineering <span class="gradient-text">Milestones</span></h2>
+
+      <div class="timeline-wrap">
+
+        <div class="tl-item left" id="tl-1">
+          <div class="tl-icon">🎓</div>
+          <div class="tl-card">
+            <div class="tl-year">2021</div>
+            <h3>Started B.E. Mechanical Engineering</h3>
+            <p>Embarked on my engineering journey with a focus on core mechanical principles — thermodynamics, mechanics of materials, and manufacturing processes.</p>
+          </div>
+        </div>
+
+        <div class="tl-item right" id="tl-2">
+          <div class="tl-icon">🖥</div>
+          <div class="tl-card">
+            <div class="tl-year">2022</div>
+            <h3>Mastered AutoCAD & 2D Drafting</h3>
+            <p>Completed intensive AutoCAD training, producing detailed technical drawings for machine components and structural assemblies to industry standards.</p>
+          </div>
+        </div>
+
+        <div class="tl-item left" id="tl-3">
+          <div class="tl-icon">⚙</div>
+          <div class="tl-card">
+            <div class="tl-year">2023</div>
+            <h3>SolidWorks 3D Modelling & GD&T</h3>
+            <p>Dove deep into parametric 3D modelling with SolidWorks. Studied ASME Y14.5 GD&T standards and applied them across multiple design projects.</p>
+          </div>
+        </div>
+
+        <div class="tl-item right" id="tl-4">
+          <div class="tl-icon">📊</div>
+          <div class="tl-card">
+            <div class="tl-year">2024</div>
+            <h3>ANSYS FEA Simulation Projects</h3>
+            <p>Learned finite element analysis using ANSYS Mechanical. Completed structural, thermal, and fatigue analysis on multiple engineering components.</p>
+          </div>
+        </div>
+
+        <div class="tl-item left active-tl" id="tl-5">
+          <div class="tl-icon">🚀</div>
+          <div class="tl-card">
+            <div class="tl-year">2025 — Now</div>
+            <h3>Final Year & Portfolio Building</h3>
+            <p>Completing capstone design project, building professional portfolio, and actively seeking mechanical designer roles and internship opportunities.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTACT ══ -->
+  <section id="contact" class="contact section">
+    <div class="container">
+      <div class="section-tag">Let's Connect</div>
+      <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
+      <p class="section-subtitle">Open to internships, collaborations, and full-time mechanical design roles</p>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-card" id="cc-email" onclick="window.location='mailto:trishikaran368@gmail.com'" style="cursor:pointer">
+            <div class="cc-icon">✉</div>
+            <div>
+              <strong>Email</strong>
+              <span>trishikaran368@gmail.com</span>
+            </div>
+          </div>
+          <div class="contact-card" id="cc-linkedin" onclick="window.open('https://www.linkedin.com/in/rishikarant','_blank')" style="cursor:pointer">
+            <div class="cc-icon">in</div>
+            <div>
+              <strong>LinkedIn</strong>
+              <span>linkedin.com/in/rishikarant</span>
+            </div>
+          </div>
+          <div class="contact-card" id="cc-location">
+            <div class="cc-icon">📍</div>
+            <div>
+              <strong>Location</strong>
+              <span>India — Open to Relocation</span>
+            </div>
+          </div>
+
+          <!-- 3D rotating sphere decoration -->
+          <div class="sphere-deco" id="sphere-deco">
+            <div class="sphere-inner"></div>
+            <div class="sphere-ring r1"></div>
+            <div class="sphere-ring r2"></div>
+            <div class="sphere-ring r3"></div>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name-input">Name</label>
+              <input type="text" id="name-input" name="name" placeholder="Your Name" required />
+            </div>
+            <div class="form-group">
+              <label for="email-input">Email</label>
+              <input type="email" id="email-input" name="email" placeholder="your@email.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="subject-input">Subject</label>
+            <input type="text" id="subject-input" name="subject" placeholder="e.g. Internship Opportunity" />
+          </div>
+          <div class="form-group">
+            <label for="message-input">Message</label>
+            <textarea id="message-input" name="message" rows="5" placeholder="Tell me about the opportunity..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary btn-full" id="submit-btn">
+            <span>Send Message</span>
+            <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+          </button>
+          <div class="form-success" id="form-success">
+            ✅ Message sent successfully! I'll get back to you soon.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <span class="logo-icon">⚙</span>
+        <span class="logo-text">Rishi<span class="logo-accent">karan</span></span>
+      </div>
+      <p class="footer-text">Rishikaran T &mdash; Crafted with precision, just like every design I make.</p>
+      <div class="footer-links">
+        <a href="#hero" id="footer-home">Home</a>
+        <a href="#projects" id="footer-projects">Projects</a>
+        <a href="#contact" id="footer-contact">Contact</a>
+      </div>
+      <p class="footer-copy">© 2025 Rishikaran T. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
