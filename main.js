@@ -91,16 +91,20 @@ document.body.style.overflow = 'hidden';
 
 /* ── NAVBAR ── */
 (function initNavbar() {
-  const navbar = document.getElementById('navbar');
-  const toggle = document.getElementById('nav-toggle');
-  const navLinks = document.getElementById('nav-links');
+  const navbar    = document.getElementById('navbar');
+  const toggle    = document.getElementById('nav-toggle');
+  const navLinks  = document.getElementById('nav-links');
+  const themeBtn  = document.getElementById('theme-toggle');
 
+  /* ── Scroll background ── */
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
 
+  /* ── Hamburger menu ── */
   toggle.addEventListener('click', () => {
     navLinks.classList.toggle('open');
+    document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
     const spans = toggle.querySelectorAll('span');
     if (navLinks.classList.contains('open')) {
       spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
@@ -111,15 +115,16 @@ document.body.style.overflow = 'hidden';
     }
   });
 
-  // Close on link click
+  /* ── Close menu on link click ── */
   navLinks.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
       navLinks.classList.remove('open');
+      document.body.style.overflow = '';
       toggle.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
     });
   });
 
-  // Active nav link on scroll
+  /* ── Active nav link on scroll ── */
   const sections = document.querySelectorAll('section[id]');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -130,8 +135,19 @@ document.body.style.overflow = 'hidden';
       }
     });
   }, { threshold: 0.4 });
-
   sections.forEach(s => observer.observe(s));
+
+  /* ── Light / Dark Theme Toggle ── */
+  const savedTheme = localStorage.getItem('portfolio-theme');
+  if (savedTheme === 'light') document.body.classList.add('light-mode');
+
+  themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    const isLight = document.body.classList.contains('light-mode');
+    localStorage.setItem('portfolio-theme', isLight ? 'light' : 'dark');
+    themeBtn.style.transform = 'rotate(360deg) scale(1.15)';
+    setTimeout(() => { themeBtn.style.transform = ''; }, 400);
+  });
 })();
 
 /* ── HERO PARALLAX ── */
