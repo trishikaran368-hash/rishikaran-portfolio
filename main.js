@@ -322,7 +322,7 @@ const email = document.getElementById('email-input').value;
 const subject = document.getElementById('subject-input').value;
 const message = document.getElementById('message-input').value;
 
-fetch('http://localhost:3001/api/contact', {
+fetch('https://rishikaran-portfolio-backend.onrender.com/api/contact', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
