@@ -8,8 +8,13 @@
 window.addEventListener('load', () => {
   const loader = document.getElementById('loader');
   setTimeout(() => {
+    // Snap to top before revealing content to prevent mobile jump
+    window.scrollTo(0, 0);
     loader.classList.add('hidden');
-    document.body.style.overflow = 'auto';
+    // Restore overflow after the loader fade completes
+    setTimeout(() => {
+      document.body.style.overflow = '';
+    }, 650); // matches loader transition 0.6s
     // Trigger hero image animation
     const heroImg = document.getElementById('hero-bg-img');
     if (heroImg) heroImg.classList.add('loaded');
@@ -165,17 +170,20 @@ document.body.style.overflow = 'hidden';
     }
   }, { passive: true });
 
-  // Mouse move 3D tilt on hero content
+  // Mouse move 3D tilt on hero content — disabled on touch devices
   const heroContent = document.querySelector('.hero-content');
-  document.addEventListener('mousemove', (e) => {
-    if (!heroContent) return;
-    const { clientX, clientY } = e;
-    const cx = window.innerWidth / 2;
-    const cy = window.innerHeight / 2;
-    const dx = (clientX - cx) / cx;
-    const dy = (clientY - cy) / cy;
-    heroContent.style.transform = `perspective(1200px) rotateY(${dx * 2}deg) rotateX(${-dy * 2}deg)`;
-  });
+  const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  if (!isTouchDevice) {
+    document.addEventListener('mousemove', (e) => {
+      if (!heroContent) return;
+      const { clientX, clientY } = e;
+      const cx = window.innerWidth / 2;
+      const cy = window.innerHeight / 2;
+      const dx = (clientX - cx) / cx;
+      const dy = (clientY - cy) / cy;
+      heroContent.style.transform = `perspective(1200px) rotateY(${dx * 2}deg) rotateX(${-dy * 2}deg)`;
+    });
+  }
 })();
 
 /* ── COUNTER ANIMATION ── */
