@@ -844,7 +844,7 @@ body.light-mode .scroll-wheel { background: var(--accent-blue); }
 .od-2 { background: var(--accent-blue); box-shadow: 0 0 10px var(--accent-blue); }
 .od-3 { background: rgba(0,212,255,0.5); width: 5px; height: 5px; }
 
-/* ── PROFILE CARD ── */
+/* ── PROFILE 3D CARD ── */
 .profile-3d-card {
   position: relative;
   z-index: 2;
@@ -852,15 +852,20 @@ body.light-mode .scroll-wheel { background: var(--accent-blue); }
   border: 1px solid var(--border-card);
   border-radius: var(--radius-lg);
   padding: 24px;
-  transition: box-shadow 0.3s ease, border-color 0.3s ease;
-  cursor: default;
+  transition: transform 0.15s ease, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  cursor: pointer;
+  will-change: transform;
 }
 
+/* 3D hover tilt animation */
 .profile-3d-card:hover {
-  box-shadow: 0 12px 40px rgba(0,0,0,0.3), 0 0 30px rgba(0,212,255,0.08);
-  border-color: rgba(0, 212, 255, 0.35);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 50px rgba(0,212,255,0.15);
+  border-color: rgba(0, 212, 255, 0.45);
 }
 
+/* JS-driven tilt via inline style — the CSS just sets the base & glow */
 .profile-3d-card .profile-depth-glow {
   position: absolute;
   border-radius: 50%;
@@ -906,6 +911,7 @@ body.light-mode .scroll-wheel { background: var(--accent-blue); }
   aspect-ratio: 1;
   max-width: 280px;
   margin: 0 auto;
+  transform-style: preserve-3d;
 }
 
 .profile-photo {
@@ -916,6 +922,10 @@ body.light-mode .scroll-wheel { background: var(--accent-blue); }
   transition: transform 0.4s ease, filter 0.4s ease;
 }
 
+.profile-3d-card:hover .profile-photo {
+  transform: scale(1.04);
+  filter: brightness(1.08) contrast(1.05);
+}
 
 /* Scan overlay */
 .scan-overlay {
